@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="col-lg-12">
+    <h1>Traffic Cop</h1>
+</div>
+
+<div class="container">
+    {% for balancer in balancers %}
+        <p> {{ balancer }} </p> <br>
+    {% endfor %}
+
+{% endblock %}
