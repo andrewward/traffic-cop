@@ -1,5 +1,5 @@
 var main = function(){
-    $('.btn').click(function(){
+    $('#prmcdn').click(function(){
         alert($('#prmcdn').val());
         $('.btn').addClass('enabled');
     });

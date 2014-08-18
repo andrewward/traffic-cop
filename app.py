@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, request
 import requests
 import yaml
 
@@ -57,6 +57,12 @@ def trafficcop():
     for zone in config_yaml['domains']:
         no_dots.append(zone.split('.')[0])
     return render_template('trafficcop.html', zones=no_dots)
+
+
+@app.route('/trafficcop/<zone>', methods=['GET', 'POST'])
+def balance(zone):
+    load_balancers = get_load_balancers(zone + '.com')
+    return render_template('zone.html', load_balancers=load_balancers)
 
 
 if __name__ == '__main__':

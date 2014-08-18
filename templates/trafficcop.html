@@ -8,7 +8,9 @@
 <div class="container">
     <div class="col-md1">
     {% for zone in zones %}
-    <input id="{{ zone }}" type="submit" class="btn" value="{{ zone }}"/>
+    <!-- Button trigger modal -->
+    <a href="/trafficcop/{{zone}}" class="btn btn-primary btn-lg" type="button" >{{zone}} </a>
+    </button>
     {% endfor %}
     </div>
 
