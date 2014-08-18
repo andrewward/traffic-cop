@@ -28,12 +28,13 @@ def get_load_balancers(domain):
 
 
 def get_load_members(zone, fqdn):
-    lookup = host + '/LoadBalancePoolEntry/' + zone + '/' + fqdn
+    lookup = host + '/LoadBalancePoolEntry/' + zone + '/' + fqdn + '?detail=Y'
     return requests.get(lookup, headers=headers).json()['data']
 
 
 def get_gslb_members(zone, fqdn):
-    lookup = host + '/GSLBRegionPoolEntry/' + zone + '/' + fqdn + '/global'
+    lookup = host + '/GSLBRegionPoolEntry/' + zone + '/' + fqdn \
+        + 'global?detail=Y'
     return requests.get(lookup, headers=headers).json()['data']
 
 
@@ -52,10 +53,10 @@ def logout():
 
 @app.route('/trafficcop')
 def trafficcop():
-    balancers = []
-    for domain in config_yaml['domains']:
-        balancers.extend(get_load_balancers(domain))
-    return render_template('trafficcop.html', balancers=balancers)
+    no_dots = []
+    for zone in config_yaml['domains']:
+        no_dots.append(zone.split('.')[0])
+    return render_template('trafficcop.html', zones=no_dots)
 
 
 if __name__ == '__main__':

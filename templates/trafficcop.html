@@ -6,8 +6,10 @@
 </div>
 
 <div class="container">
-    {% for balancer in balancers %}
-        <p> {{ balancer }} </p> <br>
+    <div class="col-md1">
+    {% for zone in zones %}
+    <input id="{{ zone }}" type="submit" class="btn" value="{{ zone }}"/>
     {% endfor %}
+    </div>
 
 {% endblock %}
